@@ -19,6 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Gabriel Ayoubi - Portfolio</title>
+        <meta name="description" content="Portfolio website of Gabriel Ayoubi" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

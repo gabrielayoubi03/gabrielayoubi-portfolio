@@ -6,7 +6,12 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'uf-orange': '#FA4616', // UF Orange
+        'uf-blue': '#0021A5',   // UF Blue
+      },
+    },
   },
   plugins: [],
 } 
