@@ -1,22 +1,19 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
+import { db } from '@/lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 export async function POST(request) {
   try {
     const data = await request.json();
     
-    // Connect to MongoDB
-    const client = await clientPromise;
-    const db = client.db('portfolio');
-    
-    // Insert the message into a 'messages' collection
-    await db.collection('messages').insertOne({
+    // Add a new document to Firestore
+    const docRef = await addDoc(collection(db, 'messages'), {
       ...data,
-      createdAt: new Date()
+      createdAt: new Date().toISOString()
     });
     
     return NextResponse.json(
-      { message: 'Message stored successfully' },
+      { message: 'Message stored successfully', id: docRef.id },
       { status: 200 }
     );
   } catch (error) {
